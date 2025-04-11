@@ -6,7 +6,7 @@ authors = [
     {name = "jacob", email = "jacob8753@gmail.com"},
 ]
 dependencies = []
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.13"
 readme = "README.md"
 license = {text = "MIT"}
 
@@ -17,3 +17,8 @@ build-backend = "pdm.backend"
 
 [tool.pdm]
 distribution = true
+
+[dependency-groups]
+air = [
+    "apache-airflow==2.10.3",
+]
