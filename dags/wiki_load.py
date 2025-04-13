@@ -35,12 +35,10 @@ def check_bq_partition_exists(ds):
     from google.api_core.exceptions import NotFound
 
     client = bigquery.Client()
-    table_id = f"load.wiki{ds.replace('-', '')}"
-
     try:
         query = f"""
         SELECT 1
-        FROM `{table_id}`
+        FROM load.wiki
         WHERE date = '{ds}'
         LIMIT 1
         """
@@ -55,7 +53,7 @@ def check_bq_partition_exists(ds):
             return 'load_parquet_partition'
 
     except NotFound:
-        print(f"테이블 {table_id} 없음 → load")
+        print("테이블 'load.wiki' 없음 → load")
         return 'load_parquet_partition'
     except Exception as e:
         print(f"BQ 쿼리 실패: {e}")
